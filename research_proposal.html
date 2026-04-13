@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhD Research Proposal: Peri-Urban Sanitation Sociology</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Warm Neutrals (Alabaster background #FAF9F6, Deep Slate text #1E293B, Soft Teal accents #0F766E, Burnt Sienna highlights #C2410C) -->
+    <!-- Application Structure Plan: The SPA uses a comprehensive dashboard layout with sidebar navigation to organize the complete PhD proposal. The structure flows logically from Introduction -> Literature Review -> Theoretical Framework -> RQs & Objectives -> Gap & Hypotheses -> Methodology -> Timeline -> Bibliography. This enables evaluators to navigate a dense academic document efficiently, utilizing interactive tabs for literature, toggles for the research gap, and a filterable list for the bibliography. -->
+    <!-- Visualization & Content Choices: 
+         1. Interactive Tabs (Literature Review): Organizes dense text into thematic categories. Goal: Manage cognitive load. Justification: Prevents overwhelming the user with a wall of text.
+         2. Hover Cards (Theoretical Framework): Presents core sociological theories. Goal: Inform. Justification: Interactive reveal keeps the UI clean while providing necessary academic depth.
+         3. Interactive Toggles (Research Gap): Contrasts existing paradigms with the proposed gap. Goal: Emphasize the core contribution. Justification: Forces focus on the comparison.
+         4. Doughnut & Bar Charts (Contextual Projections): Chart.js visualizations of hypotheses. Goal: Visualize expected empirical findings. Justification: Quantifies the qualitative context.
+         5. HTML Step Timeline (Work Plan): Visualizes the 4-year PhD schedule. Goal: Organize process flow. Justification: Clean, responsive alternative to complex Gantt SVGs.
+         6. Filterable List (Bibliography): Categorized academic references. Goal: Organize sources. Justification: Allows evaluators to quickly assess the theoretical backing of specific domains (Urban vs. Sociology). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #FAF9F6; color: #1E293B; scroll-behavior: smooth; }
+        .chart-container { position: relative; width: 100%; max-width: 700px; margin-left: auto; margin-right: auto; height: 350px; max-height: 400px; }
+        @media (max-width: 768px) { .chart-container { height: 250px; max-height: 300px; } }
+        .nav-link.active { background-color: #e2e8f0; border-left: 4px solid #0F766E; font-weight: bold; color: #0F766E; }
+        .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
+        .hidden-content { display: none; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+        .tab-btn.active { border-bottom: 3px solid #0F766E; color: #0F766E; font-weight: 600; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .theory-card:hover .theory-detail { max-height: 200px; opacity: 1; margin-top: 1rem; }
+        .theory-detail { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.4s ease; margin-top: 0; }
+    </style>
+</head>
+<body class="flex flex-col md:flex-row min-h-screen">
+
+    <nav class="w-full md:w-64 bg-white shadow-lg md:fixed md:h-screen z-20 flex flex-col">
+        <div class="p-6 border-b border-gray-200">
+            <h1 class="text-xl font-bold text-teal-800 leading-tight">Sociological Research Proposal</h1>
+            <p class="text-xs text-gray-500 mt-2">Lucknow Peri-Urban Study</p>
+        </div>
+        <div class="flex-grow overflow-y-auto py-4 flex flex-col gap-1 px-4" id="nav-menu">
+            <a href="#introduction" class="nav-link block px-4 py-2 rounded text-sm text-gray-700 hover:bg-gray-100 transition-all active">1. Introduction</a>
+            <a href="#lit-review" class="nav-link block px-4 py-2 rounded text-sm text-gray-700 hover:bg-gray-100 transition-all">2. Literature Review</a>
+            <a href="#theory" class="nav-link block px-4 py-2 rounded text-sm text-gray-700 hover:bg-gray-100 transition-all">3. Theoretical Framework</a>
+            <a href="#rq-obj" class="nav-link block px-4 py-2 rounded text-sm text-gray-700 hover:bg-gray-100 transition-all">4. Questions & Objectives</a>
+            <a href="#research-gap" class="nav-link block px-4 py-2 rounded text-sm text-gray-700 hover:bg-gray-100 transition-all">5. Gap & Projections</a>
+            <a href="#methodology" class="nav-link block px-4 py-2 rounded text-sm text-gray-700 hover:bg-gray-100 transition-all">6. Methodology</a>
+            <a href="#timeline" class="nav-link block px-4 py-2 rounded text-sm text-gray-700 hover:bg-gray-100 transition-all">7. Work Plan & Impact</a>
+            <a href="#bibliography" class="nav-link block px-4 py-2 rounded text-sm text-gray-700 hover:bg-gray-100 transition-all">8. Bibliography</a>
+        </div>
+    </nav>
+
+    <main class="flex-grow md:ml-64 p-6 md:p-10 lg:p-16 overflow-y-auto w-full">
+        
+        <header class="mb-16 border-b-2 border-teal-700 pb-8">
+            <div class="inline-block bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-semibold tracking-wide mb-4">&#9873; PhD Research Proposal</div>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 leading-tight mb-4">Health Awareness and Sanitation Habitats in the Peri-Urban Interface</h2>
+            <p class="text-xl text-teal-700 font-medium">A Sociological Study of Transitioning Communities in Lucknow, UP</p>
+            <p class="text-sm text-gray-500 mt-4 font-semibold uppercase tracking-widest">Proposed By: [Candidate Name]</p>
+        </header>
+
+        <section id="introduction" class="mb-20 scroll-mt-20">
+            <h3 class="text-2xl font-bold mb-6 flex items-center text-slate-800"><span class="text-orange-600 mr-2">&#9632;</span> 1. Introduction & Context</h3>
+            <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                This section introduces the spatial and sociological phenomena of the Peri-Urban Interface (PUI) in Lucknow. It outlines how rapid urbanization creates zones that are administratively ambiguous, leading to severe implications for community health and sanitation practices.
+            </p>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100">
+                <p class="text-md leading-relaxed text-gray-700 mb-4">
+                    The rapid spatial expansion of tier-two Indian cities, specifically Lucknow, driven by migration and real estate sprawl, has led to the creation of vast <strong>Peri-Urban Interfaces (PUIs)</strong>. Expanding along corridors such as Faizabad Road, Kanpur Road, and Sitapur Road, these zones are characterized by a unique spatial and administrative duality: they are no longer purely agrarian, yet they lack the formal civic infrastructure (piped water, underground sewage networks, formal waste management) characteristic of municipal limits.
+                </p>
+                <p class="text-md leading-relaxed text-gray-700">
+                    Sociologically, these transitional spaces are inhabited by a highly heterogeneous mix of native villagers facing land alienation, displaced urban poor, and newly arrived rural migrants seeking economic footholds. This diverse demographic brings varying cultural norms, caste dynamics, and class strata into close physical proximity. Consequently, the negotiation of space, sanitation practices, and health-seeking behaviors becomes highly complex. Understanding environmental health in this context requires moving beyond mere engineering deficits to analyzing the "habitus," power structures, and social constructs of the transitioning communities.
+                </p>
+            </div>
+        </section>
+
+        <section id="lit-review" class="mb-20 scroll-mt-20">
+            <h3 class="text-2xl font-bold mb-6 flex items-center text-slate-800"><span class="text-orange-600 mr-2">&#9632;</span> 2. Literature Review</h3>
+            <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                This section synthesizes existing research across three major domains related to the proposed study. Use the interactive tabs below to explore the current academic landscape regarding Urbanization, Sanitation Sociology, and the Peri-Urban phenomenon.
+            </p>
+
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="flex border-b border-gray-200 bg-gray-50 overflow-x-auto">
+                    <button class="tab-btn active px-6 py-4 text-sm font-medium text-gray-600 hover:text-teal-700 focus:outline-none whitespace-nowrap" onclick="openTab(event, 'lit-urban')">Urbanization & Migration</button>
+                    <button class="tab-btn px-6 py-4 text-sm font-medium text-gray-600 hover:text-teal-700 focus:outline-none whitespace-nowrap" onclick="openTab(event, 'lit-sanitation')">Sociology of Sanitation</button>
+                    <button class="tab-btn px-6 py-4 text-sm font-medium text-gray-600 hover:text-teal-700 focus:outline-none whitespace-nowrap" onclick="openTab(event, 'lit-pui')">The Peri-Urban Discourse</button>
+                </div>
+
+                <div id="lit-urban" class="tab-content active p-6 md:p-8">
+                    <h4 class="font-bold text-lg text-slate-800 mb-3">Dynamics of Indian Urbanization</h4>
+                    <p class="text-gray-700 mb-4 leading-relaxed">Current literature (Kundu, 2011; Denis et al., 2012) emphasizes that Indian urbanization is increasingly driven by "subaltern urbanization"—the growth of census towns and peripheries rather than just mega-cities. Studies highlight the push-pull factors of migration, focusing on the precarious livelihoods of migrants. However, much of this literature focuses heavily on economic indicators and livelihood struggles, often treating spatial integration and resultant health vulnerabilities as secondary outcomes rather than primary sites of sociological inquiry.</p>
+                </div>
+
+                <div id="lit-sanitation" class="tab-content p-6 md:p-8">
+                    <h4 class="font-bold text-lg text-slate-800 mb-3">Caste, Purity, and Public Health</h4>
+                    <p class="text-gray-700 mb-4 leading-relaxed">The sociology of sanitation in India is inextricably linked to the caste system. Scholars like Chaplin (2011) and Doron & Raja (2015) have extensively documented how notions of 'purity and pollution' dictate waste management and the systematic marginalization of sanitation workers. Furthermore, research on schemes like Swachh Bharat Abhiyan (Coffey & Spears, 2017) reveals that behavioral change is hindered by deep-seated cultural beliefs regarding the proximity of latrines to the household. Yet, this research is primarily bifurcated into traditional village settings or established urban slums.</p>
+                </div>
+
+                <div id="lit-pui" class="tab-content p-6 md:p-8">
+                    <h4 class="font-bold text-lg text-slate-800 mb-3">Institutional Voids in the PUI</h4>
+                    <p class="text-gray-700 mb-4 leading-relaxed">The Peri-Urban Interface is defined as a space of "institutional ambiguity" (Narain et al., 2013). Literature shows that PUIs suffer from a lack of formal governance, falling between the cracks of rural Panchayats and Urban Municipalities. While environmental studies note the depletion of water bodies and ecological degradation in these zones (Baviskar, 2003), there is a distinct lack of empirical sociological data on how heterogeneous communities *internally* negotiate rules of hygiene, water sharing, and sanitation when state apparatuses are absent.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="theory" class="mb-20 scroll-mt-20">
+            <h3 class="text-2xl font-bold mb-6 flex items-center text-slate-800"><span class="text-orange-600 mr-2">&#9632;</span> 3. Theoretical Framework</h3>
+            <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                To move beyond descriptive statistics, this study will utilize established sociological theories to interpret the empirical data. Hover over the cards below to explore how these conceptual frameworks will be applied to the study of sanitation in Lucknow's PUI.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="theory-card bg-white p-6 rounded-xl shadow-md border-t-4 border-teal-600 cursor-pointer">
+                    <div class="flex items-center justify-center w-12 h-12 bg-teal-100 text-teal-800 rounded-full mb-4 text-xl font-bold">&#9861;</div>
+                    <h4 class="text-xl font-bold text-slate-800 mb-2">Theory of Habitus</h4>
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Pierre Bourdieu</p>
+                    <div class="theory-detail text-gray-700 text-sm">
+                        <strong>Application:</strong> Will be used to understand how deeply ingrained, pre-reflexive habits regarding open defecation, water usage, and personal hygiene persist or transform when rural migrants move into denser, semi-urban spaces. It explains why merely providing infrastructure does not guarantee behavioral change.
+                    </div>
+                </div>
+
+                <div class="theory-card bg-white p-6 rounded-xl shadow-md border-t-4 border-orange-600 cursor-pointer">
+                    <div class="flex items-center justify-center w-12 h-12 bg-orange-100 text-orange-800 rounded-full mb-4 text-xl font-bold">&#9729;</div>
+                    <h4 class="text-xl font-bold text-slate-800 mb-2">Purity and Danger</h4>
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Mary Douglas</p>
+                    <div class="theory-detail text-gray-700 text-sm">
+                        <strong>Application:</strong> Essential for analyzing the cultural and caste-based dimensions of sanitation in UP. The framework will help decipher local classifications of 'clean' versus 'dirty' spaces, and how these symbolic boundaries dictate who is responsible for managing waste in shared, unregulated peri-urban environments.
+                    </div>
+                </div>
+
+                <div class="theory-card bg-white p-6 rounded-xl shadow-md border-t-4 border-slate-600 cursor-pointer">
+                    <div class="flex items-center justify-center w-12 h-12 bg-slate-200 text-slate-800 rounded-full mb-4 text-xl font-bold">&#10021;</div>
+                    <h4 class="text-xl font-bold text-slate-800 mb-2">Production of Space</h4>
+                    <p class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Henri Lefebvre</p>
+                    <div class="theory-detail text-gray-700 text-sm">
+                        <strong>Application:</strong> Used to analyze the PUI not just as a geographical location, but as a socially produced space. It will guide the analysis of how real estate capital, state neglect, and migrant influx intersect to create spatial inequalities in health infrastructure.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rq-obj" class="mb-20 scroll-mt-20">
+            <h3 class="text-2xl font-bold mb-6 flex items-center text-slate-800"><span class="text-orange-600 mr-2">&#9632;</span> 4. Research Questions & Objectives</h3>
+            <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                This section clearly defines the central inquiries driving the research and the actionable objectives designed to answer them. The questions bridge the gap between theoretical sociology and empirical public health data.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200 shadow-inner">
+                    <h4 class="text-xl font-bold text-teal-800 mb-4 border-b pb-2 border-teal-200">Primary Research Questions</h4>
+                    <ol class="list-decimal list-inside space-y-4 text-gray-800 font-medium">
+                        <li>How do different social groups (based on caste, class, and migrant status) within Lucknow's PUI conceptualize and practice sanitation and hygiene?</li>
+                        <li>In the absence of formal municipal infrastructure, what are the informal, community-level mechanisms developed to manage waste and secure potable water?</li>
+                        <li>How does the transitional spatial nature of the PUI impact the collective health awareness and vulnerability to infectious diseases among its residents?</li>
+                    </ol>
+                </div>
+
+                <div class="bg-teal-800 text-white p-8 rounded-2xl shadow-lg">
+                    <h4 class="text-xl font-bold text-orange-300 mb-4 border-b pb-2 border-teal-600">Specific Objectives</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-orange-400 font-bold text-xl mr-3">&#10003;</span>
+                            <p class="text-md"><strong>Map:</strong> To map existing sanitation infrastructure (formal and informal) and water access points in selected peri-urban villages.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-orange-400 font-bold text-xl mr-3">&#10003;</span>
+                            <p class="text-md"><strong>Investigate:</strong> To measure the level of health awareness regarding water-borne diseases across varying socio-economic strata.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-orange-400 font-bold text-xl mr-3">&#10003;</span>
+                            <p class="text-md"><strong>Analyze:</strong> To critically examine how intersectional sociological factors influence daily sanitation practices and healthcare access.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-orange-400 font-bold text-xl mr-3">&#10003;</span>
+                            <p class="text-md"><strong>Identify:</strong> To evaluate the role of local institutions (Panchayats vs. informal networks) in shaping collective environmental habits.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="research-gap" class="mb-20 scroll-mt-20">
+            <h3 class="text-2xl font-bold mb-6 flex items-center text-slate-800"><span class="text-orange-600 mr-2">&#9632;</span> 5. The Research Gap & Contextual Projections</h3>
+            <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                This section explicitly justifies the study by contrasting existing policy paradigms with the realities of the PUI. It features interactive toggles outlining the literature gap and charts visualizing the hypothesized data outcomes that the methodology will test.
+            </p>
+
+            <div class="mb-10">
+                <h4 class="text-lg font-bold text-gray-800 mb-4 uppercase tracking-wide border-b pb-2">A. Identifying the Gap</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 bg-gray-50 hover:bg-gray-100 font-semibold text-md flex justify-between items-center text-slate-800 border-b border-gray-200 focus:outline-none" onclick="toggleSection('gap-spatial')">
+                            The Spatial & Policy Gap
+                            <span class="text-teal-600 text-xl font-bold transition-transform" id="icon-gap-spatial">&#43;</span>
+                        </button>
+                        <div id="gap-spatial" class="p-6 hidden-content bg-white">
+                            <span class="text-xs font-bold text-gray-500 uppercase">Existing Paradigm vs. Gap</span>
+                            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Policies target either 'Rural' or 'Urban'. The PUI exists in an institutional blind spot. It is governed by rural panchayats but exhibits urban population densities. There is a lack of empirical data on community negotiation of health when formal structures are absent.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                        <button class="w-full text-left px-6 py-4 bg-gray-50 hover:bg-gray-100 font-semibold text-md flex justify-between items-center text-slate-800 border-b border-gray-200 focus:outline-none" onclick="toggleSection('gap-socio')">
+                            The Sociological Framework Gap
+                            <span class="text-teal-600 text-xl font-bold transition-transform" id="icon-gap-socio">&#43;</span>
+                        </button>
+                        <div id="gap-socio" class="p-6 hidden-content bg-white">
+                            <span class="text-xs font-bold text-gray-500 uppercase">Existing Paradigm vs. Gap</span>
+                            <p class="mt-2 text-sm text-gray-700 leading-relaxed">Sanitation is mostly studied via public health or civil engineering. There is a deficit in analyzing sanitation as a *socially constructed* practice. How do changing caste hierarchies and loss of social cohesion among migrants affect hygiene awareness?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-bold text-gray-800 mb-4 uppercase tracking-wide border-b pb-2">B. Hypotheses & Visual Projections</h4>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h5 class="text-center font-bold text-gray-800 mb-1">Institutional Focus Deficit</h5>
+                        <p class="text-center text-xs text-gray-500 mb-4">Hypothesized policy & research focus allocation.</p>
+                        <div class="chart-container">
+                            <canvas id="policyChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-xs text-gray-600 leading-relaxed bg-gray-50 p-2 rounded border-l-2 border-orange-400">
+                            <strong>Premise:</strong> While formal urban and rural zones receive targeted interventions, the PUI scores lower in institutional support, relying heavily on unregulated private actors.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                        <h5 class="text-center font-bold text-gray-800 mb-1">Projected Sanitation Typology</h5>
+                        <p class="text-center text-xs text-gray-500 mb-4">Expected primary sanitation methods in Lucknow PUI.</p>
+                        <div class="chart-container">
+                            <canvas id="sanitationChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-xs text-gray-600 leading-relaxed bg-gray-50 p-2 rounded border-l-2 border-teal-400">
+                            <strong>Premise:</strong> The PUI is characterized by unregulated private solutions. Reliance on improper private septic tanks poses severe groundwater contamination risks, overriding municipal sewer models.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="methodology" class="mb-20 scroll-mt-20">
+            <h3 class="text-2xl font-bold mb-6 flex items-center text-slate-800"><span class="text-orange-600 mr-2">&#9632;</span> 6. Proposed Methodology</h3>
+            <p class="text-lg leading-relaxed mb-8 text-gray-700">
+                The research employs an <strong>Explanatory Sequential Mixed-Methods Design</strong>. It integrates quantitative surveys to establish macro-level baselines, followed by deep qualitative ethnography to explain the 'why' behind the sociological data.
+            </p>
+
+            <div class="flex flex-col lg:flex-row gap-4 items-stretch justify-center w-full">
+                <div class="bg-slate-50 flex-1 p-6 rounded-lg border-t-4 border-slate-400 relative shadow-sm">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-slate-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow">1</div>
+                    <h4 class="font-bold text-center mt-2 mb-4 text-slate-800 uppercase text-sm tracking-wider">Phase 1: Spatial & Pilot</h4>
+                    <ul class="text-sm space-y-3 text-slate-700">
+                        <li class="flex"><span class="text-slate-400 mr-2">&#9656;</span> <strong>Site Selection:</strong> Purposive sampling of 4 transitional villages across major Lucknow corridors (e.g., Chinhat, Bakshi Ka Talab areas).</li>
+                        <li class="flex"><span class="text-slate-400 mr-2">&#9656;</span> <strong>Mapping:</strong> Participatory GIS mapping of sanitation assets and stagnant water zones.</li>
+                        <li class="flex"><span class="text-slate-400 mr-2">&#9656;</span> <strong>Key Informants:</strong> Unstructured interviews with Pradhans, local quacks (RMPs), and ASHA workers.</li>
+                    </ul>
+                </div>
+
+                <div class="hidden lg:flex items-center justify-center text-3xl text-slate-300">&#10140;</div>
+
+                <div class="bg-teal-50 flex-1 p-6 rounded-lg border-t-4 border-teal-500 relative shadow-sm">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-teal-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow">2</div>
+                    <h4 class="font-bold text-center mt-2 mb-4 text-teal-900 uppercase text-sm tracking-wider">Phase 2: Quantitative</h4>
+                    <ul class="text-sm space-y-3 text-teal-800">
+                        <li class="flex"><span class="text-teal-400 mr-2">&#9656;</span> <strong>Sampling:</strong> Stratified random sampling ensuring representation across caste, income, and native/migrant status.</li>
+                        <li class="flex"><span class="text-teal-400 mr-2">&#9656;</span> <strong>Data Collection:</strong> Structured interview schedules administered to approx. 300 households.</li>
+                        <li class="flex"><span class="text-teal-400 mr-2">&#9656;</span> <strong>Focus:</strong> Assessing Knowledge, Attitude, and Practices (KAP) regarding sanitation and disease vectors.</li>
+                    </ul>
+                </div>
+
+                <div class="hidden lg:flex items-center justify-center text-3xl text-teal-300">&#10140;</div>
+
+                <div class="bg-orange-50 flex-1 p-6 rounded-lg border-t-4 border-orange-500 relative shadow-sm">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow">3</div>
+                    <h4 class="font-bold text-center mt-2 mb-4 text-orange-900 uppercase text-sm tracking-wider">Phase 3: Qualitative</h4>
+                    <ul class="text-sm space-y-3 text-orange-800">
+                        <li class="flex"><span class="text-orange-400 mr-2">&#9656;</span> <strong>Interviews:</strong> In-depth Ethnographic Interviews (n = 40) drawn from survey respondents.</li>
+                        <li class="flex"><span class="text-orange-400 mr-2">&#9656;</span> <strong>FGDs:</strong> Focus Group Discussions segregated by gender and migrant status to capture collective narratives.</li>
+                        <li class="flex"><span class="text-orange-400 mr-2">&#9656;</span> <strong>Analysis:</strong> Thematic analysis using NVivo, focusing on habitus, stigma, and social negotiation.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="mb-20 scroll-mt-20">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <div class="lg:col-span-2">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center text-slate-800"><span class="text-orange-600 mr-2">&#9632;</span> 7. Work Plan & Timeline</h3>
+                    <p class="text-md leading-relaxed mb-6 text-gray-700">
+                        The proposed research is scheduled over a period of four years. The timeline ensures adequate duration for rapport building, extensive field ethnography, and rigorous data analysis.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+                            <div class="w-24 text-center font-bold text-teal-700 border-r border-gray-200 pr-4">Year 1</div>
+                            <div class="pl-4 text-sm text-gray-700">
+                                <strong>Preparation:</strong> Extensive literature review, finalizing theoretical framework, defense of synopsis, tool development (questionnaires & interview guides), and ethical clearance.
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+                            <div class="w-24 text-center font-bold text-teal-700 border-r border-gray-200 pr-4">Year 2</div>
+                            <div class="pl-4 text-sm text-gray-700">
+                                <strong>Fieldwork (Phases 1 & 2):</strong> Site selection, rapport building, pilot study, spatial mapping, and execution of the quantitative household survey across chosen PUI sites.
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+                            <div class="w-24 text-center font-bold text-teal-700 border-r border-gray-200 pr-4">Year 3</div>
+                            <div class="pl-4 text-sm text-gray-700">
+                                <strong>Fieldwork (Phase 3) & Initial Analysis:</strong> Conducting qualitative ethnography, FGDs. Transcription of qualitative data, SPSS analysis of survey data, and drafting initial findings.
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
+                            <div class="w-24 text-center font-bold text-teal-700 border-r border-gray-200 pr-4">Year 4</div>
+                            <div class="pl-4 text-sm text-gray-700">
+                                <strong>Synthesis & Writing:</strong> Integrating qualitative and quantitative data, writing thesis chapters, presenting papers at conferences, pre-submission presentation, and final thesis submission.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 flex items-center text-slate-800"><span class="text-teal-600 mr-2">&#9733;</span> Significance</h3>
+                    <div class="bg-orange-50 border border-orange-200 p-6 rounded-xl h-full">
+                        <ul class="space-y-4 text-sm text-gray-800">
+                            <li>
+                                <strong class="block text-orange-800 text-base mb-1">Academic Contribution:</strong>
+                                Adds crucial empirical data to the sociology of space and environmental sociology, specifically contextualizing the unique socio-cultural dynamics of Uttar Pradesh's expanding tier-2 cities.
+                            </li>
+                            <li>
+                                <strong class="block text-orange-800 text-base mb-1">Policy Relevance:</strong>
+                                Provides actionable insights for local bodies (SUDA, Municipal Corporations) highlighting why generic 'rural' or 'urban' sanitation schemes fail in transition zones.
+                            </li>
+                            <li>
+                                <strong class="block text-orange-800 text-base mb-1">Public Health Nuance:</strong>
+                                Shifts the discourse from blaming 'uneducated' behavior to understanding the structural constraints and social rationalities behind sanitation practices in marginalized areas.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="bibliography" class="mb-20 scroll-mt-20">
+            <h3 class="text-2xl font-bold mb-6 flex items-center text-slate-800"><span class="text-orange-600 mr-2">&#9632;</span> 8. Selected Bibliography</h3>
+            <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                A preliminary list of key literature informing this proposal. Use the filters below to categorize the references.
+            </p>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                <div class="mb-6 flex flex-wrap gap-2">
+                    <button class="filter-btn px-4 py-1 bg-teal-600 text-white rounded text-sm font-medium focus:outline-none" onclick="filterBib('all')">All</button>
+                    <button class="filter-btn px-4 py-1 bg-gray-200 text-gray-700 rounded text-sm font-medium hover:bg-gray-300 focus:outline-none" onclick="filterBib('theory')">Sociological Theory</button>
+                    <button class="filter-btn px-4 py-1 bg-gray-200 text-gray-700 rounded text-sm font-medium hover:bg-gray-300 focus:outline-none" onclick="filterBib('urban')">Urban & Peri-Urban Studies</button>
+                    <button class="filter-btn px-4 py-1 bg-gray-200 text-gray-700 rounded text-sm font-medium hover:bg-gray-300 focus:outline-none" onclick="filterBib('sanitation')">Sanitation & Public Health</button>
+                </div>
+
+                <ul id="bib-list" class="space-y-4 text-sm text-gray-800 leading-relaxed">
+                    <li class="bib-item border-l-4 border-teal-500 pl-3" data-category="theory">
+                        Bourdieu, P. (1977). <em>Outline of a Theory of Practice</em>. Cambridge University Press.
+                    </li>
+                    <li class="bib-item border-l-4 border-gray-300 pl-3" data-category="urban">
+                        Baviskar, A. (2003). Between violence and desire: space, power, and identity in the making of metropolitan Delhi. <em>International Social Science Journal</em>, 55(175), 89-98.
+                    </li>
+                    <li class="bib-item border-l-4 border-gray-300 pl-3" data-category="sanitation">
+                        Chaplin, S. E. (2011). <em>The Politics of Sanitation in India: Cities, Services and the State</em>. Orient Blackswan.
+                    </li>
+                    <li class="bib-item border-l-4 border-gray-300 pl-3" data-category="sanitation">
+                        Coffey, D., & Spears, D. (2017). <em>Where India Goes: Abandoned Toilets, Stunted Development and the Costs of Caste</em>. HarperCollins.
+                    </li>
+                    <li class="bib-item border-l-4 border-gray-300 pl-3" data-category="urban">
+                        Denis, E., Mukhopadhyay, P., & Zérah, M. H. (2012). Subaltern urbanization in India. <em>Economic and Political Weekly</em>, 52-62.
+                    </li>
+                    <li class="bib-item border-l-4 border-teal-500 pl-3" data-category="theory">
+                        Douglas, M. (1966). <em>Purity and Danger: An Analysis of Concepts of Pollution and Taboo</em>. Routledge.
+                    </li>
+                    <li class="bib-item border-l-4 border-gray-300 pl-3" data-category="sanitation">
+                        Doron, A., & Raja, I. (2015). The cultural politics of shit: class, gender and public space in India. <em>Postcolonial Studies</em>, 18(2), 189-207.
+                    </li>
+                    <li class="bib-item border-l-4 border-teal-500 pl-3" data-category="theory">
+                        Lefebvre, H. (1991). <em>The Production of Space</em>. Oxford: Blackwell.
+                    </li>
+                    <li class="bib-item border-l-4 border-gray-300 pl-3" data-category="urban">
+                        Narain, V., Vira, B., & Huq, S. (2013). Sustainability of the peri-urban interface: Perspectives from the Global South. <em>Environment and Urbanization</em>, 25(2), 347-353.
+                    </li>
+                    <li class="bib-item border-l-4 border-gray-300 pl-3" data-category="urban">
+                        Shaw, A. (2005). Peri-urban interface of Indian cities: Growth, governance and local initiatives. <em>Economic and Political Weekly</em>, 129-136.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Core Interaction & State Management
+        document.addEventListener('DOMContentLoaded', () => {
+            initScrollSpy();
+            initCharts();
+        });
+
+        // 1. Navigation Scroll Spy
+        function initScrollSpy() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -60% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active', 'font-bold', 'border-teal-600');
+                            link.classList.add('text-gray-700', 'border-transparent');
+                            if (link.getAttribute('href') === `#${entry.target.id}`) {
+                                link.classList.remove('text-gray-700', 'border-transparent');
+                                link.classList.add('active', 'font-bold', 'border-teal-600');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+        }
+
+        // 2. Interactive Tabs (Literature Review)
+        function openTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+                tablinks[i].classList.remove("text-teal-700");
+                tablinks[i].classList.add("text-gray-600");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+            evt.currentTarget.classList.remove("text-gray-600");
+            evt.currentTarget.classList.add("text-teal-700");
+        }
+
+        // 3. Interactive Toggles (Research Gap)
+        function toggleSection(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            
+            if (content.classList.contains('hidden-content')) {
+                content.classList.remove('hidden-content');
+                content.classList.add('block');
+                icon.innerHTML = '&#8722;'; // Minus
+                icon.style.transform = "rotate(180deg)";
+            } else {
+                content.classList.add('hidden-content');
+                content.classList.remove('block');
+                icon.innerHTML = '&#43;'; // Plus
+                icon.style.transform = "rotate(0deg)";
+            }
+        }
+
+        // 4. Filterable Bibliography
+        function filterBib(category) {
+            const items = document.querySelectorAll('.bib-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Style buttons
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-teal-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            event.currentTarget.classList.remove('bg-gray-200', 'text-gray-700');
+            event.currentTarget.classList.add('bg-teal-600', 'text-white');
+
+            // Filter logic
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // 5. Chart.js Visualizations
+        function initCharts() {
+            // Chart 1: Bar Chart
+            const ctxPolicy = document.getElementById('policyChart').getContext('2d');
+            new Chart(ctxPolicy, {
+                type: 'bar',
+                data: {
+                    labels: ['Urban Slums', 'Rural Villages', 'Peri-Urban Interface'],
+                    datasets: [
+                        {
+                            label: 'Govt. Policy Focus (Hypothetical Scale)',
+                            data: [8, 9, 3],
+                            backgroundColor: '#0F766E', // Teal
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Sociological Research Focus',
+                            data: [7, 8, 2],
+                            backgroundColor: '#C2410C', // Orange
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: { beginAtZero: true, max: 10, ticks: { font: { size: 10 } } },
+                        y: { ticks: { font: { size: 11 } } }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+                        tooltip: { bodyFont: { size: 12 } }
+                    }
+                }
+            });
+
+            // Chart 2: Doughnut Chart
+            const ctxSanitation = document.getElementById('sanitationChart').getContext('2d');
+            new Chart(ctxSanitation, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        'Private Septic (Unregulated)', 
+                        'Open Defecation', 
+                        'Shared Comm. Toilets', 
+                        'Formal Sewer'
+                    ],
+                    datasets: [{
+                        data: [55, 20, 15, 10],
+                        backgroundColor: ['#0F766E', '#C2410C', '#FCD34D', '#94A3B8'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: { position: 'right', labels: { boxWidth: 10, font: { size: 10 } } },
+                        tooltip: { callbacks: { label: function(context) { return context.label + ': ' + context.parsed + '%'; } } }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
